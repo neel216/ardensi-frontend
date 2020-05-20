@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import axios from 'axios';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
@@ -32,6 +33,12 @@ export default function AddScreen() {
           <Text style={styles.getStartedText}>
             Change any of the text, save the file, and your app will automatically reload.
           </Text>
+
+          <Button
+            onPress={test_request}
+            title='Hit me to send test request to prod'
+          />
+
         </View>
 
         <View style={styles.helpContainer}>
@@ -48,6 +55,19 @@ export default function AddScreen() {
 AddScreen.navigationOptions = {
   header: null,
 };
+
+function test_request() {
+  axios.post('https://divine-cortex-277508.ue.r.appspot.com/testing', {
+    username: 'neel216',
+    message: 'first POST from js'
+  })
+  .then(function (response) {
+    console.log(response.data.body);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
 
 function DevelopmentModeNotice() {
   if (__DEV__) {

@@ -17,6 +17,7 @@
     "@react-navigation/bottom-tabs": "^5.3.1",
     "@react-navigation/native": "^5.2.1",
     "@react-navigation/stack": "^5.2.16",
+    "axios": "^0.19.2",
     "expo": "~37.0.9",
     "expo-asset": "~8.1.0",
     "expo-constants": "~9.0.0",
@@ -35,7 +36,9 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0",
-    "jest-expo": "~37.0.0"
+    "jest-expo": "~37.0.0",
+    "metro": "^0.59.0",
+    "metro-react-native-babel-preset": "0.53.1"
   },
   "private": true
 }
