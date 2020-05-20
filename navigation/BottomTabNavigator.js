@@ -12,11 +12,8 @@ import Colors from '../constants/Colors';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Browse';
 
-export default function BottomTabNavigator({ navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({ headerTitle: getHeaderTitle(route), headerStyle: {backgroundColor: Colors.tintColor} });
+export default function BottomTabNavigator({ navigation }) {
+  navigation.setOptions({ headerTintColor: 'white', headerStyle: {backgroundColor: Colors.tintColor} }); // add ardensi logo image here with https://stackoverflow.com/questions/44097144/react-navigation-use-image-in-header
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{activeTintColor: Colors.tintColor}} >
@@ -55,15 +52,4 @@ export default function BottomTabNavigator({ navigation, route }) {
       
     </BottomTab.Navigator>
   );
-}
-
-function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
-
-  switch (routeName) {
-    case 'Add':
-      return 'How to get started';
-    case 'Account':
-      return 'Links to learn more';
-  }
 }
