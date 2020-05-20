@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "ardensi-frontend",
+    "name": "Ardensi",
+    "description": "Ardensi is a safe and secure tutor and computer science service tailored specifically for college students that aims at influencing and positively impacting the new generation.",
     "slug": "ardensi-frontend",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "ios"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
