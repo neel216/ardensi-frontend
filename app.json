@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "ardensi-frontend",
+    "slug": "ardensi-frontend",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/ardensi-icon.png",
+    "scheme": "myapp",
+    "splash": {
+      "image": "./assets/images/ardensi-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#7abbec"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    }
+  }
+}
