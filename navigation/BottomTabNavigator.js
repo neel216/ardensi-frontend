@@ -13,7 +13,13 @@ const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Browse';
 
 export default function BottomTabNavigator({ navigation }) {
-  navigation.setOptions({ headerTintColor: 'white', headerStyle: {backgroundColor: Colors.tintColor} }); // add ardensi logo image here with https://stackoverflow.com/questions/44097144/react-navigation-use-image-in-header
+  navigation.setOptions({ headerTintColor: 'white',
+                          headerTitleStyle: {fontFamily: 'footlight',
+                                             fontSize: 30,
+                                             marginBottom: -5,
+                                            },
+                          headerStyle: {backgroundColor: Colors.tintColor},
+                        }); // add ardensi logo image here with https://stackoverflow.com/questions/44097144/react-navigation-use-image-in-header
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{activeTintColor: Colors.tintColor}} >
