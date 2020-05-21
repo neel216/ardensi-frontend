@@ -1,56 +1,52 @@
 import * as React from 'react';
+import axios from 'axios';
 import { StyleSheet, Text, View, SectionList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export default function BrowseScreen() {
-  let response2 = {'13453234': {category: 'Tutoring - Computer Science',
-                                title: 'Computer Science Tutor Needed',
-                                college: 'UNC-Chapel Hill',
-                                pay: '8/hr',
-                                description: 'Looking for a computer science tutor who can assist with lessons relating to COMP 116. Specifically looking for guidance with data structures and object oriented programming in Python.'
-                               },
-                   '13545687': {category: 'Tutoring - Computer Science',
-                                title: 'Computer Science Tutor Needed',
-                                college: 'UNC-Chapel Hill',
-                                pay: '8/hr',
-                                description: 'Looking for a computer science tutor who can assist with lessons relating to COMP 116. Specifically looking for guidance with data structures and object oriented programming in Python.'
-                               },
-                   '13587946': {category: 'Tutoring - Computer Science',
-                                title: 'Computer Science Tutor Needed',
-                                college: 'UNC-Chapel Hill',
-                                pay: '8/hr',
-                                description: 'Looking for a computer science tutor who can assist with lessons relating to COMP 116. Specifically looking for guidance with data structures and object oriented programming in Python.'
-                               }
-                  };
-  let response = {category: 'Tutoring - Computer Science',
+const serverUrl = 'https://divine-cortex-277508.ue.r.appspot.com';
+const http = axios.create({
+  baseURL: serverUrl,
+});
+
+export default function BrowseScreen() {  
+
+  let response1 = {category: 'Tutoring - Computer Science',
                   title: 'Computer Science Tutor Needed',
                   college: 'UNC-Chapel Hill',
                   pay: '8/hr',
                   description: 'Looking for a computer science tutor who can assist with lessons relating to COMP 116. Specifically looking for guidance with data structures and object oriented programming in Python.'
                 };
-  let response3 = [{ title: 'listings', data: [response,
-                                               response,
-                                               response,
-                                              ]
-                    }];
-
-  /*
-  for (const [id, data] of Object.entries(response2)) {
-    console.log(data);
-  }
-  TODO: ADD AXIOS REQUEST HERE AND CLEAN IT UP FOR REACT USING THIS ITERATOR
-  */
+  let response2 = [{ title: 'listings',
+                     data: [response1,
+                            response1,
+                            response1,
+                           ]
+                    }
+                  ];
 
   return (
     <SectionList
-      sections={response3}
+      sections={response2}
       keyExtractor={(item, index) => item + index}
       renderItem={({ item }) => <Listing data={item} /> }
       renderSectionHeader={() => null}
     />
   );
 }
-//<View style={{ flexDirection: 'row' }}>
+
+
+function sendRequest() {
+  return http.post('/listing.search', {search: {param: 'college', val: 'UNC-Chapel Hill'}})
+  .then((response) => {
+    let clean = [{title: 'listings', data: []}];
+    for (const [id, data] of Object.entries(response.data)) {
+      clean[0].data.push(data);
+    }
+    console.log(clean);
+    return clean;
+  });
+}
+
 const Listing = ({ data }) => (
   <RectButton style={styles.listing}>
       <View>
