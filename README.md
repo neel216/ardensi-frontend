@@ -13,12 +13,13 @@ Development environment intended for Windows 10 operating systems
 ### Install npm packages
 - In cmd, run `npm install -g expo-cli`
 - In cmd, run `npm install -g react-native-cli`
+- In cmd, run `npm install` to install node modules
 
 ### Link font dependences to project
 - In cmd, run `react-native link`
 
-### Install the Expo app
-- Download the Expo app from the Apple App Store to run the app with live reloading
+### Install the [Expo app](https://apps.apple.com/us/app/expo-client/id982107779)
+- Download the [Expo app](https://apps.apple.com/us/app/expo-client/id982107779) from the Apple App Store to run the app with live reloading
 
 ## Run Development Environment
 - In cmd, run `yarn ios` to start the iOS development server
