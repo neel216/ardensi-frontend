@@ -16,7 +16,10 @@ export default function BrowseScreen({ navigation }) {
                          college: '',
                          pay: '',
                          description: '',
-                         time: ''
+                         time: '',
+                         seller_first: '',
+                         seller_last: '',
+                         seller_email: ''
                         }]
                 }];
   
@@ -38,7 +41,7 @@ export default function BrowseScreen({ navigation }) {
   }, []);
   
   const Listing = ({ data }) => (
-    <RectButton style={styles.listing} onPress={() => navigation.navigate('Listing', data) }>
+    <RectButton style={styles.listing} onPress={() => navigation.navigate('Listing', {info: data}) }>
         <View>
           <View style={styles.listingTextContainer}>
             <Text style={styles.categoryText}>{data.category}</Text>
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 15,
     borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
     borderColor: 'rgba(122, 187, 236, 0.69)',
     borderRadius: 20,
     marginTop: 15,
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   titleText: {
-    fontSize: 20,
+    fontSize: 19,
     alignSelf: 'flex-start',
     marginTop: 2,
   },
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
     color: 'grey',
     alignSelf: 'flex-start',
     marginTop: 2,
-    lineHeight: 20
+    lineHeight: 19
   },
   footerTextContainer: {
     flexDirection: 'row',
