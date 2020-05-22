@@ -8,9 +8,10 @@ export default {
       screens: {
         Login: 'login', // TODO: make login screen
         Search: 'search',
-        Browse: 'browse',
         Add: 'add',
         Account: 'account',
+        Browse: 'browse',
+        Listing: 'listing',
       },
     },
   },
