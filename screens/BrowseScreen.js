@@ -9,13 +9,14 @@ const http = axios.create({
   baseURL: serverUrl,
 });
 
-export default function BrowseScreen() {
+export default function BrowseScreen({ navigation }) {
   let preset = [{title: 'listings',
                  data: [{category: '',
                          title: '',
                          college: '',
                          pay: '',
-                         description: ''
+                         description: '',
+                         time: ''
                         }]
                 }];
   
@@ -36,6 +37,27 @@ export default function BrowseScreen() {
     getListings();
   }, []);
   
+  const Listing = ({ data }) => (
+    <RectButton style={styles.listing} onPress={() => navigation.navigate('Listing', data) }>
+        <View>
+          <View style={styles.listingTextContainer}>
+            <Text style={styles.categoryText}>{data.category}</Text>
+            <Text style={styles.titleText}>{data.title}</Text>
+            <Text style={styles.collegeText}>at {data.college}</Text>
+            <Text style={styles.payText}>${data.pay}</Text>
+            <Text style={styles.descriptionText}>{data.description}</Text>
+            <View style={styles.footerTextContainer}>
+              <View style={{flex: 1}}>
+                <Text style={styles.footerTextLeft}>Verified Student <Text style={{ color: '#7AD492' }}>✓</Text></Text>
+              </View>
+              <View style={{flex: 1}}>
+                <Text style={styles.footerTextRight}>{data.time} ago</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+    </RectButton>
+  );
 
   return (
     <SectionList
@@ -46,28 +68,6 @@ export default function BrowseScreen() {
     />
   );
 }
-
-const Listing = ({ data }) => (
-  <RectButton style={styles.listing}>
-      <View>
-        <View style={styles.listingTextContainer}>
-          <Text style={styles.categoryText}>{data.category}</Text>
-          <Text style={styles.titleText}>{data.title}</Text>
-          <Text style={styles.collegeText}>at {data.college}</Text>
-          <Text style={styles.payText}>${data.pay}</Text>
-          <Text style={styles.descriptionText}>{data.description}</Text>
-          <View style={styles.footerTextContainer}>
-            <View style={{flex: 1}}>
-              <Text style={styles.footerTextLeft}>Verified Student <Text style={{ color: '#7AD492' }}>✓</Text></Text>
-            </View>
-            <View style={{flex: 1}}>
-              <Text style={styles.footerTextRight}>1 hour ago</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-  </RectButton>
-);
 
 const styles = StyleSheet.create({
   listing: {
