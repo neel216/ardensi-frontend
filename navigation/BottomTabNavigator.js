@@ -105,7 +105,7 @@ export default function BottomTabNavigator({ navigation }) {
   navigation.setOptions({headerShown: false});
 
   return (
-    <BottomTab.Navigator headerMode='none' initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{activeTintColor: Colors.tintColor}} >
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{activeTintColor: Colors.tintColor}} >
 
       <BottomTab.Screen
         name="Search"
