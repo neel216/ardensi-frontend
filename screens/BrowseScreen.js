@@ -2,49 +2,49 @@ import * as React from 'react';
 import axios from 'axios';
 import { StyleSheet, Text, View, SectionList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import { useState, useEffect } from 'react';
 
 const serverUrl = 'https://divine-cortex-277508.ue.r.appspot.com';
 const http = axios.create({
   baseURL: serverUrl,
 });
 
-export default function BrowseScreen() {  
+export default function BrowseScreen() {
+  let preset = [{title: 'listings',
+                 data: [{category: '',
+                         title: '',
+                         college: '',
+                         pay: '',
+                         description: ''
+                        }]
+                }];
+  
+  const [listings, setListings] = useState(preset);
 
-  let response1 = {category: 'Tutoring - Computer Science',
-                  title: 'Computer Science Tutor Needed',
-                  college: 'UNC-Chapel Hill',
-                  pay: '8/hr',
-                  description: 'Looking for a computer science tutor who can assist with lessons relating to COMP 116. Specifically looking for guidance with data structures and object oriented programming in Python.'
-                };
-  let response2 = [{ title: 'listings',
-                     data: [response1,
-                            response1,
-                            response1,
-                           ]
-                    }
-                  ];
+  const sendRequest = () => {
+    http.post('/listing.search', {search: {param: 'college', val: 'UNC-Chapel Hill'}}) // update 'UNC-Chapel Hill' with user.college or whatever
+    .then((response) => {
+      let clean = [{title: 'listings', data: []}];
+      for (const [id, data] of Object.entries(response.data)) {
+        clean[0].data.push(data);
+      }
+      setListings(clean);
+    });
+  }
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+  
 
   return (
     <SectionList
-      sections={response2}
+      sections={listings}
       keyExtractor={(item, index) => item + index}
       renderItem={({ item }) => <Listing data={item} /> }
       renderSectionHeader={() => null}
     />
   );
-}
-
-
-function sendRequest() {
-  return http.post('/listing.search', {search: {param: 'college', val: 'UNC-Chapel Hill'}})
-  .then((response) => {
-    let clean = [{title: 'listings', data: []}];
-    for (const [id, data] of Object.entries(response.data)) {
-      clean[0].data.push(data);
-    }
-    console.log(clean);
-    return clean;
-  });
 }
 
 const Listing = ({ data }) => (
