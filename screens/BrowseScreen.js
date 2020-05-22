@@ -21,7 +21,7 @@ export default function BrowseScreen() {
   
   const [listings, setListings] = useState(preset);
 
-  const sendRequest = () => {
+  const getListings = () => {
     http.post('/listing.search', {search: {param: 'college', val: 'UNC-Chapel Hill'}}) // update 'UNC-Chapel Hill' with user.college or whatever
     .then((response) => {
       let clean = [{title: 'listings', data: []}];
@@ -33,7 +33,7 @@ export default function BrowseScreen() {
   }
 
   useEffect(() => {
-    sendRequest();
+    getListings();
   }, []);
   
 
