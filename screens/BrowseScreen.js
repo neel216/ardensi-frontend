@@ -63,12 +63,14 @@ export default function BrowseScreen({ navigation }) {
   );
 
   return (
-    <SectionList
-      sections={listings}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <Listing data={item} /> }
-      renderSectionHeader={() => null}
-    />
+    <View style={{backgroundColor: '#f6f6f6'}}>
+      <SectionList
+        sections={listings}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => <Listing data={item} /> }
+        renderSectionHeader={() => null}
+      />
+    </View>
   );
 }
 
