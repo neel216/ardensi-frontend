@@ -17,7 +17,7 @@ export default function ListingScreen({ route, navigation }) {
       <View style={styles.titleContainer}>
         <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>View Listing</Text>
       </View>
-      <ScrollView>
+      <ScrollView style={{height: '100%'}}>
         <View>
           <Listing data={info} />
         </View>
