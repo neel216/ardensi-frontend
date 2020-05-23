@@ -14,7 +14,12 @@ export default function ListingScreen({ route, navigation }) {
 
   return (
     <View>
-      <Listing data={info} />
+      <View style={styles.titleContainer}>
+        <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>View Listing</Text>
+      </View>
+      <View>
+        <Listing data={info} />
+      </View>
       <View>
         <RectButton style={styles.buyButton}>
           <Text style={styles.buyText}>Buy</Text>
@@ -27,26 +32,24 @@ export default function ListingScreen({ route, navigation }) {
 const Listing = ({ data }) => (
   <View style={styles.listing}>
       <View>
-        <View style={styles.listingTextContainer}>
-          <Text style={styles.categoryText}><Text style={{ color: 'grey', fontSize: 15 }}>Category:</Text>{'\n'}{data.category}</Text>
-          <Text style={styles.titleText}><Text style={{ color: 'grey', fontSize: 15 }}>Title:</Text>{'\n'}{data.title}</Text>
-          <Text style={styles.collegeText}><Text style={{ color: 'grey', fontSize: 15 }}>College:</Text>{'\n'}{data.college}</Text>
-          <Text style={styles.payText}><Text style={{ color: 'grey', fontSize: 15 }}>Pay:</Text>{'\n'}${data.pay}</Text>
-          <Text style={styles.descriptionText}><Text style={{ color: 'grey', fontSize: 15 }}>Description:</Text>{'\n'}{data.description}</Text>
-          <RectButton style={styles.sellerContainer}>
-            <Text style={styles.sellerText}>
-              Posted by:{'\n'}
-              Neel Runton{'\n'}
-              neelr216@gmail.com
-            </Text>
-          </RectButton>
-          <View style={styles.footerTextContainer}>
-              <View style={{flex: 1}}>
-                <Text style={styles.footerTextLeft}>Verified Student <Text style={{ color: '#7AD492' }}>✓</Text></Text>
-              </View>
-              <View style={{flex: 1}}>
-                <Text style={styles.footerTextRight}>{data.time} ago</Text>
-              </View>
+        <Text style={styles.categoryText}><Text style={{ color: 'grey', fontSize: 15 }}>Category:</Text>{'\n'}{data.category}</Text>
+        <Text style={styles.titleText}><Text style={{ color: 'grey', fontSize: 15 }}>Title:</Text>{'\n'}{data.title}</Text>
+        <Text style={styles.collegeText}><Text style={{ color: 'grey', fontSize: 15 }}>College:</Text>{'\n'}{data.college}</Text>
+        <Text style={styles.payText}><Text style={{ color: 'grey', fontSize: 15 }}>Pay:</Text>{'\n'}${data.pay}</Text>
+        <Text style={styles.descriptionText}><Text style={{ color: 'grey', fontSize: 15 }}>Description:</Text>{'\n'}{data.description}</Text>
+        <RectButton style={styles.sellerContainer}>
+          <Text style={styles.sellerText}>
+            Posted by:{'\n'}
+            Neel Runton{'\n'}
+            neelr216@gmail.com
+          </Text>
+        </RectButton>
+        <View style={styles.footerTextContainer}>
+            <View style={{flex: 1}}>
+              <Text style={styles.footerTextLeft}>Verified Student <Text style={{ color: '#7AD492' }}>✓</Text></Text>
+            </View>
+            <View style={{flex: 1}}>
+              <Text style={styles.footerTextRight}>{data.time} ago</Text>
             </View>
         </View>
       </View>
@@ -54,36 +57,28 @@ const Listing = ({ data }) => (
 );
 
 const styles = StyleSheet.create({
-  buyButton: {
-    backgroundColor: '#fdfdfd',
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
+  titleContainer: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'rgba(122, 187, 236, 0.69)',
-    borderColor: 'rgba(122, 187, 236, 0.69)',
-    marginTop: 10
-  },
-  buyText: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#7AD492'
   },
   listing: {
     backgroundColor: '#fdfdfd',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 5,
     borderWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'rgba(122, 187, 236, 0.5)',
     borderColor: 'rgba(122, 187, 236, 0.69)',
     //borderRadius: 20,
-    marginTop: 15,
+    marginTop: 5,
   },
   categoryText: {
     fontSize: 18,
     color: 'black',
     alignSelf: 'flex-start',
+    marginTop: 7
   },
   titleText: {
     fontSize: 18,
@@ -118,19 +113,34 @@ const styles = StyleSheet.create({
   },
   footerTextContainer: {
     flexDirection: 'row',
-    paddingTop: 6,
+    paddingTop: 15,
   },
   footerTextLeft: {
     fontSize: 13,
     color: 'grey',
     marginTop: 5,
-    marginBottom: -10
+    marginBottom: 0
   },
   footerTextRight: {
     fontSize: 13,
     color: 'grey',
     marginTop: 5,
     textAlign: 'right',
-    marginBottom: -10
-  }
+    marginBottom: 0
+  },
+  buyButton: {
+    backgroundColor: '#fdfdfd',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(122, 187, 236, 0.69)',
+    borderColor: 'rgba(122, 187, 236, 0.69)',
+    marginTop: 10
+  },
+  buyText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#7AD492'
+  },
 });
