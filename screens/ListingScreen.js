@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useState, useEffect } from 'react';
 
@@ -17,14 +17,16 @@ export default function ListingScreen({ route, navigation }) {
       <View style={styles.titleContainer}>
         <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>View Listing</Text>
       </View>
-      <View>
-        <Listing data={info} />
-      </View>
-      <View>
-        <RectButton style={styles.buyButton}>
-          <Text style={styles.buyText}>Buy</Text>
-        </RectButton>
-      </View>
+      <ScrollView>
+        <View>
+          <Listing data={info} />
+        </View>
+        <View>
+          <RectButton style={styles.buyButton}>
+            <Text style={styles.buyText}>Buy</Text>
+          </RectButton>
+        </View>
+      </ScrollView>
     </View>
   );
 }
