@@ -1,192 +1,143 @@
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import axios from 'axios';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-
-import { MonoText } from '../components/StyledText';
+import { useState } from 'react';
+import ModalSelector from 'react-native-modal-selector';
 
 export default function AddScreen() {
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('Enter Listing Title');
+  const [pay, setPay] = useState('');
+  const [paymentType, setPaymentType] = useState('');
+  const [description, setDescription] = useState('');
+
+  const categories = [
+    { key: 'Tutoring', section: true, label: 'Tutoring' },
+    { key: 'Tutoring', label: 'Math' },
+    { key: 'Tutoring', label: 'English' },
+    { key: 'Tutoring', label: 'Chemistry' },
+    { key: 'Tutoring', label: 'History' },
+    { key: 'Tutoring', label: 'Computer Science' },
+    { key: 'Business Consulting', section: true, label: 'Business Consulting' },
+    { key: 'Business Consulting', label: 'Marketing' },
+    { key: 'Business Consulting', label: 'Finance' },
+    { key: 'Business Consulting', label: 'Programming' },
+    { key: 'Miscellaneous', section: true, label: 'Miscellaneous' },
+    { key: 'Miscellaneous', label: 'Aesthetics' },
+    { key: 'Miscellaneous', label: 'Cosmetics' },
+    { key: 'Miscellaneous', label: 'Music' },
+  ];
+  const paymentTypes = [
+    { key: 'Hourly', label: 'Hourly' },
+    { key: 'Flat fee', label: 'Flat fee' },
+  ];
+
+  const ListingForm = () => {
+    return (
+      <View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Category:</Text>
+          <ModalSelector
+            data={categories}
+            initValue="Select Listing Category"
+            supportedOrientations={['portrait']}
+            onChange={(option) => { setCategory(option.key.concat(' - '.concat(option.label)))}}>
+              <TextInput
+                style={styles.optionSelect}
+                editable={false}
+                placeholder="Select Listing Category"
+                value={category}
+              />
+          </ModalSelector>
+        </View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Title:</Text>
+            <TextInput
+              style={styles.optionSelect}
+              placeholder="Enter Listing Title"
+              returnKeyType='done'
+              clearButtonMode='while-editing'
+              maxLength={50}
+            />
+        </View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Pay:</Text>
+            <TextInput
+              style={styles.optionSelect}
+              placeholder="$ Enter Payment Amount"
+              keyboardType='numeric'
+              returnKeyType='done'
+              clearButtonMode='while-editing'
+            />
+            <ModalSelector
+            data={paymentTypes}
+            initValue="Select Payment Type"
+            supportedOrientations={['portrait']}
+            onChange={(option) => { setPaymentType(option.label); }}>
+              <TextInput
+                style={styles.optionSelect}
+                editable={false}
+                placeholder="Select Payment Type"
+                value={paymentType}
+              />
+            </ModalSelector>
+        </View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Description:</Text>
+            <TextInput
+              style={styles.optionSelect}
+              placeholder="Enter Listing Description"
+              multiline={true}
+              maxLength={200}
+              returnKeyType='done'
+            />
+        </View>
+    </View>
+    );
+  }
+
+  
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/AddScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
-
-          <Button
-            onPress={test_request}
-            title='Hit me to send test request to prod'
-          />
-
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
+    <View>
+      <View style={styles.titleContainer}>
+        <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>Add Listing</Text>
+      </View>
+      <ScrollView style={{height: '100%', paddingTop: 5}}>
+        <View style={styles.listing}>
+          <ListingForm />
         </View>
       </ScrollView>
-
     </View>
   );
 }
 
-AddScreen.navigationOptions = {
-  header: null,
-};
-
-function test_request() {
-  axios.post('https://divine-cortex-277508.ue.r.appspot.com/testing', {
-    username: 'neel216',
-    message: 'first POST from js'
-  })
-  .then(function (response) {
-    console.log(response.data.body);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  titleContainer: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(122, 187, 236, 0.69)',
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
+  listing: {
+    backgroundColor: '#fdfdfd',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(122, 187, 236, 0.5)',
+    borderColor: 'rgba(122, 187, 236, 0.69)',
+    //borderRadius: 20,
     marginTop: 5,
   },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  optionSelect: {
+    fontSize: 17,
+    borderWidth: 1,
+    borderColor: 'rgba(122, 187, 236, 0.69)',
+    paddingVertical: 5,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    marginBottom: 5,
+  }
 });
