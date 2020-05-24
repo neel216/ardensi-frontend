@@ -5,7 +5,7 @@
 Development environment intended for Windows 10 operating systems
 
 ### Install [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
-- Ensure that you have yarn installed so you can properly run start the development server
+- Ensure that you have yarn installed so you can properly start the development server
 
 ### Install [npm](https://www.npmjs.com/get-npm)
 - Ensure that you have npm and node.js installed so you can install expo
