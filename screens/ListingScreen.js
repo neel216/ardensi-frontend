@@ -22,8 +22,8 @@ export default function ListingScreen({ route, navigation }) {
           <Listing data={info} />
         </View>
         <View>
-          <RectButton style={styles.buyButton}>
-            <Text style={styles.buyText}>Buy</Text>
+          <RectButton style={styles.buyButton} onPress={() => console.log('Listing purchased')}>
+            <Text style={styles.buyText}>Purchase</Text>
           </RectButton>
         </View>
       </ScrollView>
