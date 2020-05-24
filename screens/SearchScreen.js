@@ -78,6 +78,7 @@ export default function SearchScreen({ navigation }) {
           }}
           value={search}
           containerStyle={{backgroundColor: '#7abbec'}}
+          inputContainerStyle={{backgroundColor: '#fafafa'}}
           inputStyle={{fontSize: 15, margin: 0}}
           cancelButtonProps={{color: 'white'}}
           returnKeyType='search'
