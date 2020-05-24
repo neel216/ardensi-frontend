@@ -23,7 +23,7 @@ const INITIAL_ROUTE_NAME = 'Browse';
 function SearchStackScreen({ navigation }) {
   return (
     <SearchStack.Navigator
-      screenOptions={{ headerStyle: { backgroundColor: Colors.tintColor },
+      screenOptions={{ headerStyle: { backgroundColor: Colors.tintColor, shadowOpacity: 0 },
                        headerTitleStyle: { fontFamily: 'footlight',
                                            fontSize: 30,
                                            marginBottom: -5 },
@@ -33,6 +33,13 @@ function SearchStackScreen({ navigation }) {
       <SearchStack.Screen
         name="Search"
         component={SearchScreen}
+      />
+      <BrowseStack.Screen
+        name="Listing"
+        component={ListingScreen}
+        options={{
+          headerBackTitle: 'Search'
+        }}
       />
     </SearchStack.Navigator>
   );
