@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Button, Alert } from 'react-native';
 
 import TabBarIcon from '../components/TabBarIcon';
 import SearchScreen from '../screens/SearchScreen';
@@ -77,15 +76,6 @@ function AddStackScreen({ navigation }) {
       <AddStack.Screen
         name="Add"
         component={AddScreen}
-        options={{
-          headerRight: () => (
-            <Button
-              onPress={() => Alert.alert('Created listing', 'Listing posted!')}
-              title="Post Listing"
-              color="white"
-            />
-          )
-        }}
       />
     </AddStack.Navigator>
   );

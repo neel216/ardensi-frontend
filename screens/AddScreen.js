@@ -1,13 +1,28 @@
 import * as React from 'react';
 import axios from 'axios';
-import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Button, Alert } from 'react-native';
+import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import ModalSelector from 'react-native-modal-selector';
 
-export default function AddScreen() {
+export default function AddScreen({ navigation }) {
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => {
+            Alert.alert('Created listing', 'Listing posted!');
+          }}
+          title="Post"
+          color="white"
+        />
+      ),
+    });
+  }, []);
+
   const [category, setCategory] = useState('');
-  const [title, setTitle] = useState('Enter Listing Title');
+  const [title, setTitle] = useState('');
   const [pay, setPay] = useState('');
   const [paymentType, setPaymentType] = useState('');
   const [description, setDescription] = useState('');
@@ -35,7 +50,8 @@ export default function AddScreen() {
 
   const ListingForm = () => {
     return (
-      <View>
+    <KeyboardAvoidingView behavior='padding' style={{flex: 1}}>
+      <View style={{justifyContent: 'flex-end', flex: 1}}>
         <View>
           <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Category:</Text>
           <ModalSelector
@@ -59,6 +75,8 @@ export default function AddScreen() {
               returnKeyType='done'
               clearButtonMode='while-editing'
               maxLength={50}
+              onBlur={title => setTitle(title)}
+              value={title}
             />
         </View>
         <View>
@@ -69,6 +87,8 @@ export default function AddScreen() {
               keyboardType='numeric'
               returnKeyType='done'
               clearButtonMode='while-editing'
+              onBlur={pay => setPay(pay)}
+              value={pay}
             />
             <ModalSelector
             data={paymentTypes}
@@ -88,16 +108,19 @@ export default function AddScreen() {
             <TextInput
               style={styles.optionSelect}
               placeholder="Enter Listing Description"
-              multiline={true}
-              maxLength={200}
               returnKeyType='done'
+              clearButtonMode='while-editing'
+              maxLength={200}
+              multiline={true}
+              onBlur={description => setDescription(description)}
+              value={description}
             />
         </View>
     </View>
+    </KeyboardAvoidingView>
     );
   }
 
-  
   return (
     <View>
       <View style={styles.titleContainer}>
@@ -139,5 +162,5 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderRightWidth: 0,
     marginBottom: 5,
-  }
+  },
 });
