@@ -59,7 +59,7 @@ export default function AddScreen({ navigation }) {
 
   const renderListingForm = () => {
     return (
-      <View style={{justifyContent: 'flex-end', flex: 1}}>
+      <View>
         <View>
           <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Category:</Text>
           <ModalSelector
@@ -130,11 +130,13 @@ export default function AddScreen({ navigation }) {
       <View style={styles.titleContainer}>
         <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>Add Listing</Text>
       </View>
-      <ScrollView style={{height: '100%', paddingTop: 5}}>
-        <View style={styles.listing}>
-          {renderListingForm()}
-        </View>
-      </ScrollView>
+      <KeyboardAvoidingView> {/* THIS DOESN'T WORK. TODO: FIGURE OUT HOW TO MAKE THIS WORK */}
+        <ScrollView style={{height: '100%', paddingTop: 5}}>
+          <View style={styles.listing}>
+            {renderListingForm()}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView> {/* THIS DOESN'T WORK. TODO: FIGURE OUT HOW TO MAKE THIS WORK */}
     </View>
   );
 }
