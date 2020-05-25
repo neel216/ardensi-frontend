@@ -129,13 +129,13 @@ export default function AddScreen({ navigation }) {
       <View style={styles.titleContainer}>
         <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>Add Listing</Text>
       </View>
-      <KeyboardAvoidingView> {/* THIS DOESN'T WORK. TODO: FIGURE OUT HOW TO MAKE THIS WORK */}
+      <KeyboardAvoidingView>
         <ScrollView style={{height: '100%', paddingTop: 5}}>
           <View style={styles.listing}>
             {renderListingForm()}
           </View>
         </ScrollView>
-      </KeyboardAvoidingView> {/* THIS DOESN'T WORK. TODO: FIGURE OUT HOW TO MAKE THIS WORK */}
+      </KeyboardAvoidingView>
     </View>
   );
 }
