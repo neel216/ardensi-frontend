@@ -63,7 +63,7 @@ export default function BrowseScreen({ navigation }) {
   );
 
   return (
-    <View style={{backgroundColor: '#f6f6f6'}}>
+    <View style={{backgroundColor: '#f6f6f6', height: '100%'}}>
       <SectionList
         sections={listings}
         keyExtractor={(item, index) => item + index}
