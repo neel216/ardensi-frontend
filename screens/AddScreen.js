@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Button, Alert 
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import ModalSelector from 'react-native-modal-selector';
+import { Input } from 'react-native-elements';
 
 export default function AddScreen({ navigation }) {
 
@@ -13,6 +14,11 @@ export default function AddScreen({ navigation }) {
         <Button
           onPress={() => {
             Alert.alert('Created listing', 'Listing posted!');
+            setCategory('');
+            setTitle('');
+            setPay('');
+            setPaymentType('');
+            setDescription('');
           }}
           title="Post"
           color="white"
@@ -48,9 +54,8 @@ export default function AddScreen({ navigation }) {
     { key: 'Flat fee', label: 'Flat fee' },
   ];
 
-  const ListingForm = () => {
+  const renderListingForm = () => {
     return (
-    <KeyboardAvoidingView behavior='padding' style={{flex: 1}}>
       <View style={{justifyContent: 'flex-end', flex: 1}}>
         <View>
           <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Category:</Text>
@@ -69,15 +74,14 @@ export default function AddScreen({ navigation }) {
         </View>
         <View>
           <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Title:</Text>
-            <TextInput
+          <TextInput
               style={styles.optionSelect}
               placeholder="Enter Listing Title"
               returnKeyType='done'
               clearButtonMode='while-editing'
               maxLength={50}
-              onBlur={title => setTitle(title)}
-              value={title}
-            />
+              onChangeText={title => setTitle(title)}
+          />
         </View>
         <View>
           <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Pay:</Text>
@@ -87,8 +91,7 @@ export default function AddScreen({ navigation }) {
               keyboardType='numeric'
               returnKeyType='done'
               clearButtonMode='while-editing'
-              onBlur={pay => setPay(pay)}
-              value={pay}
+              onChangeText={pay => setPay(pay)}
             />
             <ModalSelector
             data={paymentTypes}
@@ -112,12 +115,10 @@ export default function AddScreen({ navigation }) {
               clearButtonMode='while-editing'
               maxLength={200}
               multiline={true}
-              onBlur={description => setDescription(description)}
-              value={description}
+              onChangeText={description => setDescription(description)}
             />
         </View>
     </View>
-    </KeyboardAvoidingView>
     );
   }
 
@@ -128,7 +129,7 @@ export default function AddScreen({ navigation }) {
       </View>
       <ScrollView style={{height: '100%', paddingTop: 5}}>
         <View style={styles.listing}>
-          <ListingForm />
+          {renderListingForm()}
         </View>
       </ScrollView>
     </View>

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Button, Alert } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import { useState } from 'react';
-import ModalSelector from 'react-native-modal-selector';
 
 export default function EditAccountScreen({ navigation }) {
 
@@ -22,102 +21,63 @@ export default function EditAccountScreen({ navigation }) {
     });
   }, []);
 
-  const [category, setCategory] = useState('');
-  const [title, setTitle] = useState('');
-  const [pay, setPay] = useState('');
-  const [paymentType, setPaymentType] = useState('');
-  const [description, setDescription] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [college, setCollege] = useState('');
 
-  const categories = [
-    { key: 'Tutoring', section: true, label: 'Tutoring' },
-    { key: 'Tutoring', label: 'Math' },
-    { key: 'Tutoring', label: 'English' },
-    { key: 'Tutoring', label: 'Chemistry' },
-    { key: 'Tutoring', label: 'History' },
-    { key: 'Tutoring', label: 'Computer Science' },
-    { key: 'Business Consulting', section: true, label: 'Business Consulting' },
-    { key: 'Business Consulting', label: 'Marketing' },
-    { key: 'Business Consulting', label: 'Finance' },
-    { key: 'Business Consulting', label: 'Programming' },
-    { key: 'Miscellaneous', section: true, label: 'Miscellaneous' },
-    { key: 'Miscellaneous', label: 'Aesthetics' },
-    { key: 'Miscellaneous', label: 'Cosmetics' },
-    { key: 'Miscellaneous', label: 'Music' },
-  ];
-  const paymentTypes = [
-    { key: 'Hourly', label: 'Hourly' },
-    { key: 'Flat fee', label: 'Flat fee' },
-  ];
-
-  const ListingForm = () => {
+  const renderAccountForm = () => {
     return (
     <KeyboardAvoidingView behavior='padding' style={{flex: 1}}>
       <View style={{justifyContent: 'flex-end', flex: 1}}>
         <View>
-          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Category:</Text>
-          <ModalSelector
-            data={categories}
-            initValue="Select Listing Category"
-            supportedOrientations={['portrait']}
-            onChange={(option) => { setCategory(option.key.concat(' - '.concat(option.label)))}}>
-              <TextInput
-                style={styles.optionSelect}
-                editable={false}
-                placeholder="Select Listing Category"
-                value={category}
-              />
-          </ModalSelector>
-        </View>
-        <View>
-          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Title:</Text>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>First name:</Text>
             <TextInput
               style={styles.optionSelect}
-              placeholder="Enter Listing Title"
+              placeholder="Enter First Name"
+              returnKeyType='done'
+              autoCorrect={false}
+              clearButtonMode='while-editing'
+              maxLength={50}
+              onChangeText={firstName => setFirstName(firstName)}
+            />
+        </View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Last name:</Text>
+            <TextInput
+              style={styles.optionSelect}
+              placeholder="Enter Last Name"
+              returnKeyType='done'
+              autoCorrect={false}
+              clearButtonMode='while-editing'
+              maxLength={50}
+              onChangeText={lastName => setLastName(lastName)}
+            />
+        </View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Email:</Text>
+            <TextInput
+              style={styles.optionSelect}
+              placeholder="Enter Email"
+              returnKeyType='done'
+              keyboardType='email-address'
+              clearButtonMode='while-editing'
+              maxLength={50}
+              onChangeText={email => setEmail(email)}
+            />
+        </View>
+        <View>
+          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>College:</Text>
+            <TextInput
+              style={styles.optionSelect}
+              placeholder="Enter College"
               returnKeyType='done'
               clearButtonMode='while-editing'
               maxLength={50}
-              onBlur={title => setTitle(title)}
-              value={title}
+              onChangeText={college => setCollege(college)}
             />
         </View>
-        <View>
-          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Pay:</Text>
-            <TextInput
-              style={styles.optionSelect}
-              placeholder="$ Enter Payment Amount"
-              keyboardType='numeric'
-              returnKeyType='done'
-              clearButtonMode='while-editing'
-              onBlur={pay => setPay(pay)}
-              value={pay}
-            />
-            <ModalSelector
-            data={paymentTypes}
-            initValue="Select Payment Type"
-            supportedOrientations={['portrait']}
-            onChange={(option) => { setPaymentType(option.label); }}>
-              <TextInput
-                style={styles.optionSelect}
-                editable={false}
-                placeholder="Select Payment Type"
-                value={paymentType}
-              />
-            </ModalSelector>
-        </View>
-        <View>
-          <Text style={{ color: 'grey', fontSize: 15, paddingTop: 5 }}>Description:</Text>
-            <TextInput
-              style={styles.optionSelect}
-              placeholder="Enter Listing Description"
-              returnKeyType='done'
-              clearButtonMode='while-editing'
-              maxLength={200}
-              multiline={true}
-              onBlur={description => setDescription(description)}
-              value={description}
-            />
-        </View>
-    </View>
+      </View>
     </KeyboardAvoidingView>
     );
   }
@@ -129,7 +89,7 @@ export default function EditAccountScreen({ navigation }) {
       </View>
       <ScrollView style={{height: '100%', paddingTop: 5}}>
         <View style={styles.listing}>
-          <ListingForm />
+          {renderAccountForm()}
         </View>
       </ScrollView>
     </View>
