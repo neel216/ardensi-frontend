@@ -10,6 +10,7 @@ import AccountScreen from '../screens/AccountScreen';
 import ListingScreen from '../screens/ListingScreen';
 import EditAccountScreen from '../screens/EditAccountScreen';
 import UserListingsScreen from '../screens/UserListingsScreen';
+import UserListingScreen from '../screens/UserListingScreen';
 
 import Colors from '../constants/Colors';
 
@@ -118,9 +119,9 @@ function AccountStackScreen({ navigation }) {
           headerBackTitle: 'Account'
         }}
       />
-      <BrowseStack.Screen
+      <AccountStack.Screen
         name="Listing"
-        component={ListingScreen}
+        component={UserListingScreen}
         options={{
           headerBackTitle: 'Listings'
         }}

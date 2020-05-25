@@ -13,7 +13,8 @@ export default {
         Browse: 'browse',
         Listing: 'listing',
         EditAccount: 'edit',
-        UserListings: 'listings'
+        UserListings: 'listings',
+        UserListing: 'listing'
       },
     },
   },
