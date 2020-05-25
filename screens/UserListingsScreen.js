@@ -12,7 +12,6 @@ const http = axios.create({
 export default function UserListingsScreen({ route, navigation }) {
 
   const { info } = route.params;
-  console.log(info);
 
   let preset = [{title: 'listings',
                  data: [{category: '',
