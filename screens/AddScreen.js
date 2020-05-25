@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Button, Alert 
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import ModalSelector from 'react-native-modal-selector';
-import { Input } from 'react-native-elements';
 
 export default function AddScreen({ navigation }) {
 
