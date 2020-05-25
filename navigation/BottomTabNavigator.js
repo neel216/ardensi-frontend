@@ -8,6 +8,8 @@ import BrowseScreen from '../screens/BrowseScreen';
 import AddScreen from '../screens/AddScreen';
 import AccountScreen from '../screens/AccountScreen';
 import ListingScreen from '../screens/ListingScreen';
+import EditAccountScreen from '../screens/EditAccountScreen';
+import UserListingsScreen from '../screens/UserListingsScreen';
 
 import Colors from '../constants/Colors';
 
@@ -101,6 +103,27 @@ function AccountStackScreen({ navigation }) {
       <AccountStack.Screen
         name="Account"
         component={AccountScreen}
+      />
+      <AccountStack.Screen
+        name="EditAccount"
+        component={EditAccountScreen}
+        options={{
+          headerBackTitle: 'Account'
+        }}
+      />
+      <AccountStack.Screen
+        name="UserListings"
+        component={UserListingsScreen}
+        options={{
+          headerBackTitle: 'Account'
+        }}
+      />
+      <BrowseStack.Screen
+        name="Listing"
+        component={ListingScreen}
+        options={{
+          headerBackTitle: 'Listings'
+        }}
       />
     </AccountStack.Navigator>
   );

@@ -12,6 +12,8 @@ export default {
         Account: 'account',
         Browse: 'browse',
         Listing: 'listing',
+        EditAccount: 'edit',
+        UserListings: 'listings'
       },
     },
   },
