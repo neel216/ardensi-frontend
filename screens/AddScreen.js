@@ -37,9 +37,10 @@ export default function AddScreen({ navigation }) {
     { key: 'Tutoring', section: true, label: 'Tutoring' },
     { key: 'Tutoring', label: 'Math' },
     { key: 'Tutoring', label: 'English' },
-    { key: 'Tutoring', label: 'Chemistry' },
+    { key: 'Tutoring', label: 'Science' },
     { key: 'Tutoring', label: 'History' },
     { key: 'Tutoring', label: 'Computer Science' },
+    { key: 'Tutoring', label: 'Engineering' },
     { key: 'Business Consulting', section: true, label: 'Business Consulting' },
     { key: 'Business Consulting', label: 'Marketing' },
     { key: 'Business Consulting', label: 'Finance' },
@@ -48,6 +49,8 @@ export default function AddScreen({ navigation }) {
     { key: 'Miscellaneous', label: 'Aesthetics' },
     { key: 'Miscellaneous', label: 'Cosmetics' },
     { key: 'Miscellaneous', label: 'Music' },
+    { key: 'Miscellaneous', label: 'Textbooks' },
+    { key: 'Miscellaneous', label: 'Housing' },
   ];
   const paymentTypes = [
     { key: 'Hourly', label: 'Hourly' },
