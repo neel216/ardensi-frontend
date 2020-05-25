@@ -25,3 +25,8 @@ Development environment intended for Windows 10 operating systems
 ## Run Development Environment
 - In cmd, run `yarn ios` to start the iOS development server
 - Scan QR code with iOS camera to view app
+
+#### TODO
+- Dynamic API requests to backend
+- Login/Signup Screen and data loading
+- KeyboardAvoidingView in AddScreen Description TextInput
