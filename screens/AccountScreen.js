@@ -7,9 +7,9 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 export default function AccountScreen({ navigation }) {
   let preset = {
     user_id: '1234',
-    first_name: 'Neel',
-    last_name: 'Runton',
-    email: 'neelr216@gmail.com',
+    first_name: 'Robert',
+    last_name: 'Dimitrov',
+    email: 'robertd223@unc.edu',
     college: 'UNC-Chapel Hill'
   }
 
