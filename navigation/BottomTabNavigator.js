@@ -3,18 +3,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
-import SearchScreen from '../screens/SearchScreen';
-import BrowseScreen from '../screens/BrowseScreen';
-import AddScreen from '../screens/AddScreen';
-import AccountScreen from '../screens/AccountScreen';
-import ListingScreen from '../screens/ListingScreen';
-import EditAccountScreen from '../screens/EditAccountScreen';
-import UserListingsScreen from '../screens/UserListingsScreen';
-import UserListingScreen from '../screens/UserListingScreen';
-
 import Colors from '../constants/Colors';
 
+import SearchScreen from '../screens/searchScreen/SearchScreen';
+import BrowseScreen from '../screens/browseScreen/BrowseScreen';
+import ListingScreen from '../screens/browseScreen/ListingScreen';
+import AddScreen from '../screens/addScreen/AddScreen';
+import AccountScreen from '../screens/accountScreen/AccountScreen';
+import EditAccountScreen from '../screens/accountScreen/EditAccountScreen';
+import UserListingsScreen from '../screens/accountScreen/UserListingsScreen';
+import UserListingScreen from '../screens/accountScreen/UserListingScreen';
+
 const BottomTab = createBottomTabNavigator();
+
 const SearchStack = createStackNavigator();
 const BrowseStack = createStackNavigator();
 const AddStack = createStackNavigator();
