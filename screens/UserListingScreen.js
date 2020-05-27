@@ -37,8 +37,8 @@ const Listing = ({ data }) => (
         <RectButton style={styles.sellerContainer}>
           <Text style={styles.sellerText}>
             Posted by:{'\n'}
-            Neel Runton{'\n'}
-            neelr216@gmail.com
+            {data.seller_first} {data.seller_last}{'\n'}
+            {data.seller_email}
           </Text>
         </RectButton>
         <View style={styles.footerTextContainer}>
