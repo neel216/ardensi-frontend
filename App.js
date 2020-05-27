@@ -7,6 +7,8 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
+// console.disableYellowBox = true; // disables warnings in Expo
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
