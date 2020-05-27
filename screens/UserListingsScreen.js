@@ -29,7 +29,7 @@ export default function UserListingsScreen({ route, navigation }) {
   const [listings, setListings] = useState(preset);
 
   const getListings = () => {
-    http.post('/listing.search', {search: {param: 'college', val: 'UNC-Chapel Hill'}}) // update 'UNC-Chapel Hill' with user.college or whatever
+    http.post('/listing.temp', {search: {param: 'college', val: 'UNC-Chapel Hill'}}) // update 'UNC-Chapel Hill' with user.college or whatever
     .then((response) => {
       let clean = [{title: 'listings', data: []}];
       for (const [id, data] of Object.entries(response.data)) {
@@ -66,7 +66,7 @@ export default function UserListingsScreen({ route, navigation }) {
   );
 
   return (
-    <View style={{backgroundColor: '#f6f6f6'}}>
+    <View style={{backgroundColor: '#f6f6f6', height: '100%'}}>
       <View style={styles.titleContainer}>
         <Text style={{fontWeight: '500', fontSize: 17, textAlign: 'center'}}>{info}</Text>
       </View>
