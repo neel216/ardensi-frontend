@@ -5,7 +5,6 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
 
 // console.disableYellowBox = true; // disables warnings in Expo
 
@@ -20,7 +19,7 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
-        <NavigationContainer linking={LinkingConfiguration}>
+        <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Ardensi" component={BottomTabNavigator} />
           </Stack.Navigator>
