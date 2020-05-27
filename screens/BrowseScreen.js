@@ -11,7 +11,8 @@ const http = axios.create({
 
 export default function BrowseScreen({ navigation }) {
   let preset = [{title: 'listings',
-                 data: [{category: '',
+                 data: [{id: '',
+                         category: '',
                          title: '',
                          college: '',
                          pay: '',
