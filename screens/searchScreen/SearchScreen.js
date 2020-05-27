@@ -3,12 +3,9 @@ import { StyleSheet, Text, View, SectionList, SafeAreaView } from 'react-native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import { SearchBar } from 'react-native-elements';
 import { useState } from 'react';
-import axios from 'axios';
 
-const serverUrl = 'https://divine-cortex-277508.ue.r.appspot.com';
-const http = axios.create({
-  baseURL: serverUrl,
-});
+import { http } from '../../utils/http';
+
 
 export default function SearchScreen({ navigation }) {
   let preset = [{title: 'listings',

@@ -1,13 +1,10 @@
 import * as React from 'react';
-import axios from 'axios';
 import { StyleSheet, Text, View, SectionList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useState, useEffect } from 'react';
 
-const serverUrl = 'https://divine-cortex-277508.ue.r.appspot.com';
-const http = axios.create({
-  baseURL: serverUrl,
-});
+import { http } from '../../utils/http';
+
 
 export default function UserListingsScreen({ route, navigation }) {
 
